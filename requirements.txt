@@ -1,0 +1,10 @@
+django
+djangorestframework
+drf_yasg
+celery
+redis
+django-celery-beat
+django-celery-results
+python-decouple
+flower
+django_celery

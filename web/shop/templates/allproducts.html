@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AllProducts</title>
+    <link href="{% static 'css/allproducts.css' %}" rel="stylesheet">
+</head>
+<body>
+    <img src="{% static 'image/logo.svg' %}" class = "logo" alt="logo" >
+    <div class = "top-menu">
+    <a href="">
+        ВСЕ ТОВАРЫ
+    </a>
+    <a href="">
+        КАТЕГОРИИ
+    </a>
+    <a href="">
+        О НАС
+    </a>
+    <a href="">
+        ПОДДЕРЖКА
+    </a>
+    <img src="{% static 'image/loupe.svg' %}" alt="loupe" class="img-header">
+    <img src="{% static 'image/basket.svg' %}" alt="basket">
+    </div>
+    <div class="product">
+    {% for product in products %}
+        <img src="{% static 'image/macm1.png' %}" alt="macm1">
+    <div class="catalog">
+        <p>{{product.title}}</p>
+        <p>{{product.content}}</p>
+        <p>{{product.cat}}</p>
+        <a href="{% url 'addtobusket' product.id %}">Купить</a>
+    </div>
+    <a href="{% url 'busket' %}">
+        Корзина
+    </a>
+    {% endfor %}
+    </div>
+    <footer>
+        <img src="{% static 'image/logo.svg' %}" class = "logo" alt="logo" >
+        <div class="flex-container width">
+            <div class="menu-footer col">
+                <div class="col-menu">
+                    <a href = "" class="name">Все товары</a>
+                    <a href = "" >Смартфоны</a>
+                    <a href = "" >Смарт-часы</a>
+                    <a href = "" >Планшеты</a>
+                    <a href = "" >Ноутбуки</a>
+                </div>
+                <div class="col-menu">
+                    <a href = "" class="name">Компания</a>
+                    <a href = "" >О нас</a>
+                    <a href = "" >Поддежка</a>
+                </div>
+                <div class="col-menu">
+                    <a href = "" class="name">Поддержка</a>
+                    <a href = "" >Контакты</a>
+                </div>
+            </div>
+            </div>
+    </footer>
+</body>
+</html>
