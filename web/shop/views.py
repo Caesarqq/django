@@ -54,9 +54,13 @@ class ContactView(CreateView):
     model = Contact
     form_class = ContactForm
     success_url = '/'
-    template_name = 'main/contact.html'
+    template_name = 'contact.html'
 
     def form_valid(self, form):
         form.save()
         send_spam_email.delay(form.instance.email)
         return super().form_valid(form)
+
+
+def test_celery_task(request):
+    send_spam_email.delay('hello')

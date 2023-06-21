@@ -45,4 +45,5 @@ urlpatterns = [
     path('addtobusket/<int:id>/', views.addtobusket, name='addtobusket'),
     path('busket/', views.busket, name='busket'),
     path('contact/', views.ContactView.as_view(), name='contact'),
+    path('test/', views.test_celery_task, name='test')
 ]
