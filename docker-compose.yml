@@ -1,3 +1,54 @@
+#version: "3.11"
+#
+#services:
+#  redis:
+#    container_name: redis
+#    image: redis:alpine
+#    restart: unless-stopped
+#    ports:
+#      - "6380:6379"
+#  mailhog:
+#    image: mailhog/mailhog
+#    container_name: mailhog
+#    ports:
+#      - "1025:1025"
+#      - "8025:8025"
+#  web:
+#    build: .
+#    command: bash -c "python manage.py makemigrations &&
+#      python manage.py migrate &&
+#      python manage.py runserver 0.0.0.0:8000 "
+#    ports:
+#      - "8000:8000"
+#    environment:
+#      - DJANGO_SETTINGS_MODULE=web.settings
+#    volumes:
+#      - .:/usr/src/web/
+#    depends_on:
+#      - redis
+#      - mailhog
+#  celery:
+#    build: ./
+#    privileged: true
+#    command: celery -A web worker --loglevel=info
+#    environment:
+#      DJANGO_SETTINGS_MODULE: 'web.settings'
+#    depends_on:
+#      - web
+#      - redis
+#  dashboard:
+#    container_name: dashboard
+#    build: ./
+#    command:  celery -A web --broker=redis://redis:6379/0 flower
+#    ports:
+#      - "5555:5555"
+#    depends_on:
+#      - redis
+#      - web
+#      - celery
+#
+#volumes:
+#  data:
 version: "3.11"
 
 services:
