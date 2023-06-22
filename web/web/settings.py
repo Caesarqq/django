@@ -138,7 +138,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # # this allows you to schedule items in the Django admin.
 # CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers.DatabaseScheduler'\
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mailhog'
+EMAIL_PORT = 1025
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST = [
+    'http://127.0.0.1:5173',
+]
+
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'DELETE',
+]
 
 #smtp
 EMAIL_USE_TLS = True
