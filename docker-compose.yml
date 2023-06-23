@@ -53,13 +53,29 @@ version: "3.11"
 
 services:
     web:
-      build: .
-      command: python web/manage.py runserver 0.0.0.0:8000
+      build:
+        context: /web
+      command: python manage.py runserver 0.0.0.0:8000
       container_name: web2
       volumes:
         - .:/web2
       ports:
         - "8000:8000"
+      depends_on:
+        - "centrifugo"
+    centrifugo:
+      container_name: centrifugo
+      image: centrifugo/centrifugo:v4
+      volumes:
+        - ./config.json:/centrifugo/config.json
+      command:
+        centrifugo -c config.json --admin
+      ports:
+        - "8001:8001"
+      ulimits:
+        nofile:
+          soft: 65535
+          hard: 65535
     redis:
       image: redis
       expose:
