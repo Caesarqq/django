@@ -5,7 +5,7 @@ from .serializers import ShopSerializer
 from django.views.generic import CreateView
 from .models import Contact
 from .forms import ContactForm
-from .tasks import send_spam_email
+from .tasks import send_spam_email,send_beat_mail
 from .service import send
 
 class ShopAPIView(generics.ListAPIView):
@@ -58,9 +58,12 @@ class ContactView(CreateView):
 
     def form_valid(self, form):
         form.save()
-        send_spam_email.delay(form.instance.email)
+        send_beat_mail.delay(form.instance.email)
         return super().form_valid(form)
 
 
 def test_celery_task(request):
     send_spam_email.delay('hello')
+
+def cent_view(request):
+    return render(request,'cent.html')

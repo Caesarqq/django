@@ -173,3 +173,10 @@ CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
+
+from cent import Client
+
+cent_api_key = "d7627bb6-2292-4911-82e1-615c0ed3eebb"
+cent_url = "http://localhost:8001"
+
+client = Client(cent_url, api_key=cent_api_key, timeout=1)
